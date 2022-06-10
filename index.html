@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Town</title>
+    <style>
+        html {
+            /* px 表示“像素（pixels）”: 基础字号为 10 像素 */
+            font-size: 10px;
+            /* Google fonts 输出的 CSS */
+            font-family: 'Open Sans', sans-serif;
+            background-color: #00539F;
+        }
+
+        body {
+            width: 600px;
+            margin: 0 auto;
+            background-color: #FF9500;
+            padding: 0 20px 20px 20px;
+            border: 5px solid black;
+            box-shadow: 20px 20px 15px rgba(0, 0, 0, .3);
+        }
+
+        h1 {
+            font-size: 60px;
+            text-align: center;
+            margin: 0;
+            padding: 20px 0;
+            color: #00539F;
+            text-shadow: 3px 3px 1px black;
+        }
+
+        .img-box {
+            margin: 0 auto;
+            transition: 5s;
+        }
+
+        .img-box img {
+            border-radius: 20px;
+            width: 100%;
+        }
+
+        .img-box:hover {
+            transform: rotate(1turn);
+        }
+
+        .desc,
+        li {
+            margin-top: 20px;
+            font-size: 16px;
+            /* line-height 后而可以跟不同的参数，如果是数字，就是当前字体大小乘上数字 */
+            line-height: 2;
+            letter-spacing: 1px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .btn {
+            background-color: #FF9500;
+            color: white;
+            border-radius: 25%;
+            box-shadow: 5px 5px 5px black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="title">hi</h1>
+    <div class="img-box">
+        <img src="images/cat.jpg" alt="cat">
+    </div>
+    <P class="desc">累了就听听歌吧</P>
+    <ul>
+        <li>我会发着呆，然后忘记你，接着紧紧闭上眼</li>
+        <li>想着哪一天，会有人代替，让我不再想念你</li>
+    </ul>
+    <button class="btn">你的名字?</button>
+    <script>
+        const title = document.querySelector('#title')
+        const myImage = document.querySelector('img')
+        const btn = document.querySelector('button')
+        function setUserName() {
+            let myName = prompt('你是谁？')
+            localStorage.setItem('name', myName)
+            title.textContent = 'Hi，' + myName
+        }
+        if (!localStorage.getItem('name')) {
+            setUserName();
+        } else {
+            let storedName = localStorage.getItem('name');
+            title.textContent = 'Hi，' + storedName;
+        }
+
+        myImage.onclick = function () {
+            let mySrc = myImage.getAttribute('src');
+            if (mySrc === 'images/cat.jpg') {
+                myImage.setAttribute('src', 'images/cat2.jpg');
+            } else {
+                myImage.setAttribute('src', 'images/cat.jpg');
+            }
+        }
+        btn.onclick = function () {
+            setUserName();
+        }
+    </script>
+</body>
+
+</html>
